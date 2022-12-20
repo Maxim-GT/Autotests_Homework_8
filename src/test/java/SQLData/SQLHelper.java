@@ -1,3 +1,5 @@
+package SQLData;
+
 import data.DataHelper;
 import lombok.SneakyThrows;
 import org.apache.commons.dbutils.QueryRunner;
@@ -17,11 +19,11 @@ public class SQLHelper {
 
     @SneakyThrows
     private static Connection getConn(){
-        return DriverManager.getConnection("jbdc:mysql://localhost:3306/app", "app","pass");
+        return DriverManager.getConnection("jdbc:mysql://localhost:3306/app", "app","pass");
     }
 
     public static DataHelper.VerificationCode getVerificationCode() {
-        var codeSQL = "SELECT * FROM auth_code ORDER BY created DESC LIMIT 1";
+        var codeSQL = "SELECT * FROM auth_codes ORDER BY created DESC LIMIT 1";
         try (var conn = getConn()) {
             var result = runner.query(conn, codeSQL, new BeanHandler<>(DataHelper.AuthCode.class));
             return new DataHelper.VerificationCode(result.getCode());
