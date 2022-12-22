@@ -1,6 +1,5 @@
 package page;
 
-import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import data.DataHelper;
 import org.openqa.selenium.support.FindBy;
@@ -14,8 +13,8 @@ public class LoginPage {
     @FindBy(css="[data-test-id='password'] input")
     private SelenideElement passwordField;
     @FindBy(css="[data-test-id='action-login'] ")
-    private SelenideElement loginButton;
-    @FindBy(css="[data-test-id='error-notification'] ")
+    public SelenideElement loginButton;
+    @FindBy(css="[data-test-id='error-notification']")
     private SelenideElement errorNotification;
 
     public void errorNotificationVisibility(){

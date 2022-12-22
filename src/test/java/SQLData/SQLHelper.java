@@ -7,7 +7,6 @@ import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.ScalarHandler;
 
 import java.sql.Connection;
-import java.sql.Driver;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
@@ -27,6 +26,17 @@ public class SQLHelper {
         try (var conn = getConn()) {
             var result = runner.query(conn, codeSQL, new BeanHandler<>(DataHelper.AuthCode.class));
             return new DataHelper.VerificationCode(result.getCode());
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        }
+        return null;
+    }
+
+    public static DataHelper.Status getUserStatus() {
+        var codeSQL = "SELECT status FROM users ORDER BY created DESC LIMIT 1";
+        try (var conn = getConn()) {
+            var result = runner.query(conn, codeSQL, new ScalarHandler<String>());
+            return new DataHelper.Status(result);
         } catch (SQLException exception) {
             exception.printStackTrace();
         }
