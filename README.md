@@ -1,1 +1,0 @@
-[![Build status](https://ci.appveyor.com/api/projects/status/ky506h11ymj8igci/branch/master?svg=true)](https://ci.appveyor.com/project/Maxim-GT/autotests-homework-8/branch/master)
