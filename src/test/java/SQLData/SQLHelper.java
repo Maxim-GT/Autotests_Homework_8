@@ -33,7 +33,7 @@ public class SQLHelper {
     }
 
     public static DataHelper.Status getUserStatus() {
-        var codeSQL = "SELECT status FROM users ORDER BY created DESC LIMIT 1";
+        var codeSQL = "select status from users where login='vasya';";
         try (var conn = getConn()) {
             var result = runner.query(conn, codeSQL, new ScalarHandler<String>());
             return new DataHelper.Status(result);

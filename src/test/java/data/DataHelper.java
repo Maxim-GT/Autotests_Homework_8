@@ -18,6 +18,10 @@ public class DataHelper {
         return new AuthInfo("vasya", "qwerty123");
     }
 
+    public static AuthInfoForSystemBlock getInfoForSystemBlock() {
+        return new AuthInfoForSystemBlock("vasya", "qwerty");
+    }
+
     private static String generateRandomLogin() {
         return faker.name().username();
     }
@@ -32,6 +36,12 @@ public class DataHelper {
 
     public static VerificationCode generateRandomVerificationCode() {
         return new VerificationCode(faker.numerify("######"));
+    }
+
+    @Value
+    public static class AuthInfoForSystemBlock {
+        String login;
+        String password;
     }
 
     @Value
@@ -58,5 +68,6 @@ public class DataHelper {
         private String user_id;
         private String code;
         private String created;
+        private String status;
     }
 }

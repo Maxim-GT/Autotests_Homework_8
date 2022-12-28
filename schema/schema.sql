@@ -1,5 +1,5 @@
 DROP TABLE IF EXISTS users;
-CREATE TABLE users
+create TABLE users
 (
     id       CHAR(36) PRIMARY KEY,
     login    VARCHAR(255) UNIQUE NOT NULL,
@@ -8,7 +8,7 @@ CREATE TABLE users
 );
 
 DROP TABLE IF EXISTS cards;
-CREATE TABLE cards
+create TABLE cards
 (
     id                 CHAR(36) PRIMARY KEY,
     user_id            CHAR(36)           NOT NULL,
@@ -18,7 +18,7 @@ CREATE TABLE cards
 );
 
 DROP TABLE IF EXISTS auth_codes;
-CREATE TABLE auth_codes
+create TABLE auth_codes
 (
     id      CHAR(36) PRIMARY KEY,
     user_id CHAR(36)   NOT NULL,
@@ -28,7 +28,7 @@ CREATE TABLE auth_codes
 );
 
 DROP TABLE IF EXISTS card_transactions;
-CREATE TABLE card_transactions
+create TABLE card_transactions
 (
     id                CHAR(36) PRIMARY KEY,
     source            VARCHAR(19) NOT NULL,

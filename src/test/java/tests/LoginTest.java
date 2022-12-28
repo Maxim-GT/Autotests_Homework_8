@@ -19,16 +19,16 @@ public class LoginTest {
 
     @Test
     void shouldSuccessfullyLogin() {
-       var loginPage = open("http://localhost:9999", LoginPage.class);
-       var authInfo = DataHelper.getAuthInfoWithTestData();
-       var verificationPage = loginPage.validLogin(authInfo);
-       verificationPage.verifyVerificationPageVisibility();
-       var verificationCode = SQLHelper.getVerificationCode();
-       verificationPage.validVerify(verificationCode.getCode());
+        var loginPage = open("http://localhost:9999", LoginPage.class);
+        var authInfo = DataHelper.getAuthInfoWithTestData();
+        var verificationPage = loginPage.validLogin(authInfo);
+        verificationPage.verifyVerificationPageVisibility();
+        var verificationCode = SQLHelper.getVerificationCode();
+        verificationPage.validVerify(verificationCode.getCode());
     }
 
     @Test
-    void shouldWarnIfInvalidUser(){
+    void shouldWarnIfInvalidUser() {
         var loginPage = open("http://localhost:9999", LoginPage.class);
         var authInfo = DataHelper.generateRandomUser();
         loginPage.validLogin(authInfo);
@@ -36,14 +36,13 @@ public class LoginTest {
     }
 
     @Test
-    void shouldBlockSystem(){
+    void shouldBlockSystem() {
         var loginPage = open("http://localhost:9999", LoginPage.class);
-        var authInfo = DataHelper.generateRandomUser();
+        var authInfoForSystemBlock = DataHelper.getInfoForSystemBlock();
         var status = SQLHelper.getUserStatus();
-        loginPage.validLogin(authInfo);
+        loginPage.invalidLogin(authInfoForSystemBlock);
         loginPage.loginButton.click();
         loginPage.loginButton.click();
-
-        Assertions.assertEquals(SQLHelper.getUserStatus().equals("blocked"), status);
+        Assertions.assertEquals(new DataHelper.Status("blocked"), status);
     }
 }
