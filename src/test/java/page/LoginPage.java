@@ -13,7 +13,7 @@ public class LoginPage {
     @FindBy(css="[data-test-id='password'] input")
     private SelenideElement passwordField;
     @FindBy(css="[data-test-id='action-login'] ")
-    public SelenideElement loginButton;
+    private SelenideElement loginButton;
     @FindBy(css="[data-test-id='error-notification']")
     private SelenideElement errorNotification;
 
@@ -24,6 +24,8 @@ public class LoginPage {
     public VerificationPage invalidLogin (DataHelper.AuthInfoForSystemBlock info) {
         loginField.setValue(info.getLogin());
         passwordField.setValue(info.getPassword());
+        loginButton.click();
+        loginButton.click();
         loginButton.click();
         return page(VerificationPage.class);
     }

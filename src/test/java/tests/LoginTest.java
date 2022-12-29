@@ -41,8 +41,6 @@ public class LoginTest {
         var authInfoForSystemBlock = DataHelper.getInfoForSystemBlock();
         var status = SQLHelper.getUserStatus();
         loginPage.invalidLogin(authInfoForSystemBlock);
-        loginPage.loginButton.click();
-        loginPage.loginButton.click();
         Assertions.assertEquals(new DataHelper.Status("blocked"), status);
     }
 }
